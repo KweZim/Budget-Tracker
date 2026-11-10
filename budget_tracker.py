@@ -1,3 +1,16 @@
+import csv
+
+FILE_NAME = "budget_data.csv"
+
+def initialize_budget_file():
+    """Initialize the budget data file if it doesn't exist."""
+    try:
+        with open(FILE_NAME, mode='x', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Date", "Type", "Amount", "Description"])
+    except FileExistsError:
+        pass  # File already exists, no need to initialize
+
 print("Welcome to the Budget Tracker!")
 
 print("\nThis program will help you track your expenses and manage your budget effectively.\n")
@@ -32,3 +45,4 @@ while True:
         break
     else:
         print("Invalid option. Please try again.")
+
