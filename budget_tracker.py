@@ -11,6 +11,44 @@ def initialize_budget_file():
     except FileExistsError:
         pass  # File already exists, no need to initialize
 
+def add_income(amount, description):
+    """Add income to the budget data file."""
+    with open(FILE_NAME, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([get_current_date(), "Income", amount, description])
+
+def add_expense():
+    """Add expense to the budget data file."""
+    category = input("Enter the category of the expense: ")
+    amount = float(input("Enter the amount of the expense: "))
+    description =  input("Enter a description for the expense: ")
+    date = input("Enter the date of the expense (YYYY-MM-DD): ")
+    with open(FILE_NAME, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([date, category, amount, description])
+
+    print(f"Expense of £{amount} in category '{category}' has been added to your budget.")
+
+def view_current_balance():
+    """Calculate and display the current balance."""
+    balance = {}
+    total_balance = 0.0
+
+    with open(FILE_NAME, mode='r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            category = row["Category"]
+            amount = float(row["Amount"])
+            if category not in balance:
+                balance[category] = 0.0
+            balance[category] += amount
+            total_balance += amount
+
+    print("\nCurrent Balance by Category:")
+    for category, amount in balance.items():
+        print(f"{category}: £{amount:.2f}")
+    print(f"\nTotal Balance: £{total_balance:.2f}")
+
 print("Welcome to the Budget Tracker!")
 
 print("\nThis program will help you track your expenses and manage your budget effectively.\n")
