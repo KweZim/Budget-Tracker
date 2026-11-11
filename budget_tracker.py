@@ -15,7 +15,7 @@ def add_income(amount, description):
     """Add income to the budget data file."""
     with open(FILE_NAME, mode='a', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow([get_current_date(), "Income", amount, description])
+        writer.writerow([amount, "Income", description])
 
 def add_expense():
     """Add expense to the budget data file."""
