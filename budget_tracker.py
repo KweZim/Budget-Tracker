@@ -29,6 +29,15 @@ def add_expense():
 
     print(f"Expense of £{amount} in category '{category}' has been added to your budget.")
 
+def view_expenses():
+    """Display all expenses from the budget data file."""
+    with open(FILE_NAME, mode='r') as file:
+        reader = csv.DictReader(file)
+        print("\nExpenses:")
+        for row in reader:
+            if row["Type"] == "Expense":
+                print(f"Date: {row['Date']}, Category: {row['Category']}, Amount: £{row['Amount']}, Description: {row['Description']}")    
+
 def view_current_balance():
     """Calculate and display the current balance."""
     balance = {}
