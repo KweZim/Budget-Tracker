@@ -69,10 +69,11 @@ while True:
     print("Please choose an option from the menu below to get started:\n")
     print("1. Add Income")
     print("2. Add Expenses")
-    print("3. View current balance")
-    print("4. Exit")
+    print("3. View expenses")
+    print("4. View current balance")
+    print("5. Exit")
 
-    option = input("\nEnter your choice (1-4): ")
+    option = input("\nEnter your choice (1-5): ")
 
     print("You selected option:", option)
 
@@ -85,9 +86,11 @@ while True:
         expense += amount
         print(f"Expense of £{amount} has been added to your budget.")
     elif option == "3":
+        view_expenses()    
+    elif option == "4":
         current_balance = income - expense
         print(f"Your current balance is: £{current_balance}")
-    elif option == "4":
+    elif option == "5":
         print("Exiting the program. Goodbye!")
         break
     else:
