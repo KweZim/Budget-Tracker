@@ -66,7 +66,6 @@ income = 0.0
 expense = 0.0
 
 while True:
-    print("Please choose an option from the menu below to get started:\n")
     print("1. Add Income")
     print("2. Add Expenses")
     print("3. View expenses")
